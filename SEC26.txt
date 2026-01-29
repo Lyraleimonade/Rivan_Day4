@@ -248,7 +248,7 @@ subjectAltName = @alt_names
 [ alt_names ]
 DNS.1 = www.rivancorp.com
 DNS.2 = rivancorp.com
-IP.1  = 192.168.102.200
+IP.1  = 192.168.102.100
 ~~~
 
 
@@ -403,14 +403,14 @@ openssl x509 -req \
 1. Install lftp
 
 !@NetOps
-sudo yum install lftp
+sudo yum install lftp -y
 
 2. Access Windows FTP Server
 
 !@NetOps
 cd /certs
-cat netops-ca.crt netops-subca.crt grant-linux.pem > fullchain.pem
-lftp -u administrator [IP ADDRESS]
+cat netops-ca.crt netops-subca.crt > fullchain.pem
+lftp -u administrator 192.168.102.100
 set ssl:ca-file fullchain.pem
 set ftp:ssl-force true
 set ftp:ssl-protect-data true
